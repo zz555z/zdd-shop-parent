@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="zdd-shop-service-weixin-impl" />
+        <module name="zdd-shop-common" />
+        <module name="zdd-shop-portal" />
+        <module name="zdd-shop-basics-springcloud-eureka" />
+        <module name="zdd-shop-service-member-impl" />
+        <module name="zdd-shop-service-api-weixin" />
+        <module name="zdd-shop-service-api-member" />
+        <module name="zdd-shop-entry-api-weixin" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="zdd-shop-basics-springcloud-eureka" options="-parameters" />
+      <module name="zdd-shop-common" options="-parameters" />
+      <module name="zdd-shop-entry-api" options="-parameters" />
+      <module name="zdd-shop-entry-api-weixin" options="-parameters" />
+      <module name="zdd-shop-portal" options="-parameters" />
+      <module name="zdd-shop-service-api" options="-parameters" />
+      <module name="zdd-shop-service-api-member" options="-parameters" />
+      <module name="zdd-shop-service-api-weixin" options="-parameters" />
+      <module name="zdd-shop-service-impl" options="-parameters" />
+      <module name="zdd-shop-service-member-impl" options="-parameters" />
+      <module name="zdd-shop-service-weixin-impl" options="-parameters" />
+    </option>
+  </component>
+</project>
