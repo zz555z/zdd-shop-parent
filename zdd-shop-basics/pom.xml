@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>zdd-shop-basics-springcloud-eureka</module>
+        <module>zdd-shop-basics-springcloud-zuul</module>
     </modules>
 
 
