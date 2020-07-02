@@ -2,6 +2,7 @@ package com.zdd.weixin.service.impl;
 
 import com.zdd.service.api.weixin.WeixinService;
 import com.zdd.weixin.entry.AppEntry;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -11,8 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class WeixinServiceImpl implements WeixinService {
+    @Value("${zdd}")
+    private String value;
+
     @Override
     public AppEntry getApp() {
-        return new AppEntry("zdd", "1234");
+        return new AppEntry(value, "1234");
     }
+
 }
