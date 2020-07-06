@@ -1,5 +1,10 @@
 package com.zdd;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.ctrip.framework.apollo.Config;
+import com.ctrip.framework.apollo.spring.annotation.ApolloConfig;
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import com.spring4all.swagger.EnableSwagger2Doc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,7 +25,12 @@ import java.util.List;
 @EnableEurekaClient
 @EnableZuulProxy
 @EnableSwagger2Doc
+@EnableApolloConfig
 public class AppGateWay {
+
+	// 获取 ApolloConfig
+	@ApolloConfig
+	private Config appConfig;
 
 	public static void main(String[] args) {
 		SpringApplication.run(AppGateWay.class, args);
@@ -32,11 +42,7 @@ public class AppGateWay {
 	class DocumentationConfig implements SwaggerResourcesProvider {
 		@Override
 		public List<SwaggerResource> get() {
-			List resources = new ArrayList<>();
-			//  使用服务的别名 获取远程服务api
-			resources.add(swaggerResource("app-zdd-member", "/app-zdd-member/v2/api-docs", "2.0"));
-			resources.add(swaggerResource("app-zdd-weixin", "/app-zdd-weixin/v2/api-docs", "2.0"));
-			return resources;
+			return resources();
 		}
 
 		private SwaggerResource swaggerResource(String name, String location, String version) {
@@ -45,6 +51,40 @@ public class AppGateWay {
 			swaggerResource.setLocation(location);
 			swaggerResource.setSwaggerVersion(version);
 			return swaggerResource;
+		}
+
+
+		/**
+		 * 获取swaggerDocument配置
+		 *
+		 * @return
+		 */
+		private String swaggerDocument() {
+			String property = appConfig.getProperty("zdd.zuul.swaggerDocument", "");
+			return property;
+		}
+
+
+		/**
+		 * 从阿波罗服务器中获取resources
+		 *
+		 * @return
+		 */
+		private List<SwaggerResource> resources() {
+
+			List resources = new ArrayList<>();
+			// app-itmayiedu-order
+			// 网关使用服务别名获取远程服务的SwaggerApi
+			String swaggerDocJson = swaggerDocument();
+			JSONArray jsonArray = JSONArray.parseArray(swaggerDocJson);
+			for (Object object : jsonArray) {
+				JSONObject jsonObject = (JSONObject) object;
+				String name = jsonObject.getString("name");
+				String location = jsonObject.getString("location");
+				String version = jsonObject.getString("version");
+				resources.add(swaggerResource(name, location, version));
+			}
+			return resources;
 		}
 
 	}
