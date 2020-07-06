@@ -1,5 +1,7 @@
 package com.zdd.service.api.weixin;
 
+import com.zdd.core.base.BaseApiService;
+import com.zdd.core.base.BaseResponse;
 import com.zdd.weixin.entry.AppEntry;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,5 +17,5 @@ public interface WeixinService {
 
     @ApiOperation(value = "获取app")
     @GetMapping("/getApp")
-    public AppEntry getApp();
+    public BaseResponse<AppEntry> getApp();
 }
