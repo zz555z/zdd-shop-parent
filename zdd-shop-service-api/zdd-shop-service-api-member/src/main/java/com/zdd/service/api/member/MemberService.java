@@ -1,9 +1,15 @@
 package com.zdd.service.api.member;
 
+import com.zdd.core.base.BaseResponse;
+import com.zdd.member.entry.UserEntity;
 import com.zdd.weixin.entry.AppEntry;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author Xin
@@ -13,7 +19,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Api(tags = "会员服务接口")
 public interface MemberService {
 
-    @ApiOperation(value = "会员服务调用微信服务接口")
-    @GetMapping("/memberToWeixin")
-    public AppEntry memberToWeixin();
+
+
+
+    /**
+     * 根据手机号码查询是否已经存在,如果存在返回当前用户信息
+     *
+     * @param mobile
+     * @return
+     */
+    @ApiOperation(value = "根据手机号码查询是否已经存在")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "mobile", dataType = "String", required = true, value = "用户手机号码"),})
+    @PostMapping("/existMobile")
+    BaseResponse<UserEntity> existMobile(@RequestParam("mobile") String mobile);
+
 }

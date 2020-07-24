@@ -25,4 +25,7 @@ public interface Constants {
     // 微信注册码有效期30分钟
     Long WEIXINCODE_TIMEOUT = 1800l;
 
+    //用户信息不存在
+    Integer HEEP_RES_CODE_EXISMOBILE_203 = 203;
+
 }
