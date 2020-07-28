@@ -1,8 +1,11 @@
 package com.zdd.weixin.mp.handler;
 
+import com.zdd.core.base.BaseResponse;
 import com.zdd.core.constants.Constants;
 import com.zdd.core.utils.RedisUtil;
 import com.zdd.core.utils.RegexUtils;
+import com.zdd.member.entry.UserEntity;
+import com.zdd.weixin.feign.MemberServiceFeign;
 import com.zdd.weixin.mp.builder.TextBuilder;
 import me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
 import me.chanjar.weixin.common.error.WxErrorException;
@@ -33,6 +36,8 @@ public class MsgHandler extends AbstractHandler {
 
     @Autowired
     private RedisUtil redisUtil;
+    @Autowired
+    private MemberServiceFeign memberServiceFeign;
 
     @Override
     public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage, Map<String, Object> context, WxMpService weixinService,
@@ -57,12 +62,20 @@ public class MsgHandler extends AbstractHandler {
         String wxMessageContent = wxMessage.getContent();
 
         if (RegexUtils.checkMobile(wxMessageContent)) {
+            BaseResponse<UserEntity> response = memberServiceFeign.existMobile(wxMessageContent);
+            if (response.getCode().equals(Constants.HTTP_RES_CODE_200)) {
+                return new TextBuilder().build("该手机号：" + wxMessageContent + "已经存在！！", wxMessage, weixinService);
+            }
+
+            if (!response.getCode().equals(Constants.HEEP_RES_CODE_EXISMOBILE_203)) {
+                return new TextBuilder().build(response.getMsg(), wxMessage, weixinService);
+            }
             // 生成验证码
             int registCode = registCode();
             // 替换字符
             String format = registrationCodeMessage.format(registrationCodeMessage, registCode);
             // 注册码存入redis
-            redisUtil.setString(Constants.WEIXINCODE_KEY+wxMessageContent,registCode+"",Constants.WEIXINCODE_TIMEOUT);
+            redisUtil.setString(Constants.WEIXINCODE_KEY + wxMessageContent, registCode + "", Constants.WEIXINCODE_TIMEOUT);
             return new TextBuilder().build(format, wxMessage, weixinService);
         }
 

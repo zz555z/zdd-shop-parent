@@ -3,8 +3,10 @@ package com.zdd.member.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.zdd.core.base.BaseApiService;
 import com.zdd.core.base.BaseResponse;
+import com.zdd.core.constants.Constants;
 import com.zdd.core.utils.MD5Util;
 import com.zdd.member.entry.UserEntity;
+import com.zdd.member.feign.VerificaCodeServiceFeign;
 import com.zdd.member.mapper.UserMapper;
 import com.zdd.service.api.member.MemberRegisterService;
 import org.apache.commons.lang3.StringUtils;
@@ -23,6 +25,9 @@ public class MemberRegisterServiceImpl extends BaseApiService<JSONObject> implem
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private VerificaCodeServiceFeign verificaCodeServiceFeign;
+
     @Override
     @Transactional
     public BaseResponse<JSONObject> register(UserEntity userEntity, String registCode) {
@@ -35,6 +40,10 @@ public class MemberRegisterServiceImpl extends BaseApiService<JSONObject> implem
         String password = userEntity.getPassword();
         if (StringUtils.isEmpty(password)) {
             return setResultError("密码不能为空");
+        }
+        BaseResponse<JSONObject> response = verificaCodeServiceFeign.verificaWeixinCode(userEntity.getMobile(), registCode);
+        if (!response.getCode().equals(Constants.HTTP_RES_CODE_200)){
+            return setResultError(response.getMsg());
         }
 
         String newPwd = MD5Util.MD5(password);
