@@ -4,7 +4,7 @@ import com.zdd.core.base.BaseResponse;
 import com.zdd.core.constants.Constants;
 import com.zdd.core.utils.RedisUtil;
 import com.zdd.core.utils.RegexUtils;
-import com.zdd.member.entry.UserEntity;
+import com.zdd.member.output.dto.UserOutDTO;
 import com.zdd.weixin.feign.MemberServiceFeign;
 import com.zdd.weixin.mp.builder.TextBuilder;
 import me.chanjar.weixin.common.api.WxConsts.XmlMsgType;
@@ -62,7 +62,7 @@ public class MsgHandler extends AbstractHandler {
         String wxMessageContent = wxMessage.getContent();
 
         if (RegexUtils.checkMobile(wxMessageContent)) {
-            BaseResponse<UserEntity> response = memberServiceFeign.existMobile(wxMessageContent);
+            BaseResponse<UserOutDTO> response = memberServiceFeign.existMobile(wxMessageContent);
             if (response.getCode().equals(Constants.HTTP_RES_CODE_200)) {
                 return new TextBuilder().build("该手机号：" + wxMessageContent + "已经存在！！", wxMessage, weixinService);
             }

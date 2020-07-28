@@ -1,13 +1,11 @@
 package com.zdd.service.api.member;
 
 import com.zdd.core.base.BaseResponse;
-import com.zdd.member.entry.UserEntity;
-import com.zdd.weixin.entry.AppEntry;
+import com.zdd.member.output.dto.UserOutDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -32,6 +30,6 @@ public interface MemberService {
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", name = "mobile", dataType = "String", required = true, value = "用户手机号码"),})
     @PostMapping("/existMobile")
-    BaseResponse<UserEntity> existMobile(@RequestParam("mobile") String mobile);
+    BaseResponse<UserOutDTO> existMobile(@RequestParam("mobile") String mobile);
 
 }

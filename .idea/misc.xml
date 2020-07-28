@@ -10,6 +10,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/zdd-shop-basics-springcloud-zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/zdd-shop-entry-api/pom.xml" />
       </set>
     </option>
   </component>
