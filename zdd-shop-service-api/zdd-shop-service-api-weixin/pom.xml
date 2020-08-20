@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>zdd-shop-entry-api-weixin</artifactId>
+            <artifactId>zdd-shop-api-weixin-dto</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

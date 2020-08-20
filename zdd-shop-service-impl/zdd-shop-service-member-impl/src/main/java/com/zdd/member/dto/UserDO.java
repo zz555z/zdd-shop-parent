@@ -32,7 +32,7 @@ public class UserDO {
 	/**
 	 * 性别 0 男 1女
 	 */
-	private char sex;
+	private String sex;
 	/**
 	 * 年龄
 	 */

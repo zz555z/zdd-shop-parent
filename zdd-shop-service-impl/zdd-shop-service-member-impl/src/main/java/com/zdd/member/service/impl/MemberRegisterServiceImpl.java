@@ -50,9 +50,9 @@ public class MemberRegisterServiceImpl extends BaseApiService<JSONObject> implem
         }
 //        UserDO userDO = new UserDO();
 //        BeanUtils.copyProperties(userIntDTO, userDO);
-        UserDO userDO = MiteBeanUtils.dtoToDo(userIntDTO, UserDO.class);
         String newPwd = MD5Util.MD5(password);
         userIntDTO.setPassword(newPwd);
+        UserDO userDO = MiteBeanUtils.dtoToDo(userIntDTO, UserDO.class);
         return userMapper.register(userDO) > 0 ? setResultSuccess("注册成功") : setResultError("注册失败");
     }
 

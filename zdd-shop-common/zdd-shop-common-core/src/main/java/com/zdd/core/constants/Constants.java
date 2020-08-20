@@ -28,4 +28,16 @@ public interface Constants {
     //用户信息不存在
     Integer HEEP_RES_CODE_EXISMOBILE_203 = 203;
 
+
+    // token
+    String MEMBER_TOKEN_KEYPREFIX = "zd.mb.login";
+
+    String LOGIN_TYPE_PC = "PC";
+    String LOGIN_TYPE_ANDROID = "Android";
+    String LOGIN_TYPE_IOS = "IOS";
+
+
+    // 登陆超时时间 有效期 90天
+    Long MEMBRE_LOGIN_TOKEN_TIME = 77776000L;
+
 }

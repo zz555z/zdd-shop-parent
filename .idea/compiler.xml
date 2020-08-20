@@ -14,8 +14,8 @@
         <module name="zdd-shop-service-member-impl" />
         <module name="zdd-shop-basics-springcloud-zuul" />
         <module name="zdd-shop-service-api-weixin" />
-        <module name="zdd-shop-common-core" />
         <module name="zdd-shop-service-api-member" />
+        <module name="zdd-shop-common-core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

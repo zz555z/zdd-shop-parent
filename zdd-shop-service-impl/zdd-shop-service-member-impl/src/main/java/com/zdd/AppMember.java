@@ -1,6 +1,5 @@
 package com.zdd;
 
-import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import com.spring4all.swagger.EnableSwagger2Doc;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -18,8 +17,8 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableEurekaClient
 @EnableFeignClients
 @EnableSwagger2Doc
-@EnableApolloConfig
-@ComponentScan("com.zdd.member.service")
+//@EnableApolloConfig
+@ComponentScan({"com.zdd.member.service","com.zdd.core"})
 @MapperScan(basePackages = "com.zdd.member.mapper")
 public class AppMember {
     public static void main(String[] args) {

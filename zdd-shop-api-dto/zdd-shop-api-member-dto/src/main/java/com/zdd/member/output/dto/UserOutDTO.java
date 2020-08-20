@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@ApiModel(value = "用户信息")
+@ApiModel(value = "用户输出信息")
 public class UserOutDTO {
 
     /**
@@ -65,11 +65,11 @@ public class UserOutDTO {
      * 用户关联 QQ 开放ID
      */
     @ApiModelProperty(value = "用户关联 QQ 开放ID")
-    private Date qqOpenid;
+    private String qqOpenid;
     /**
      * 用户关联 微信 开放ID
      */
     @ApiModelProperty(value = "用户关联 微信 开放ID")
-    private Date wxOpenid;
+    private String wxOpenid;
 
 }

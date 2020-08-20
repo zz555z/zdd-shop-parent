@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@ApiModel(value = "用户信息")
+@ApiModel(value = "用户输入信息")
 public class UserIntDTO {
 
     /**
