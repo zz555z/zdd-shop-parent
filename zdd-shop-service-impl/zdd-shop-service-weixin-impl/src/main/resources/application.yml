@@ -47,6 +47,6 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/zdd_weixin?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&&serverTimezone=UTC
+    url: jdbc:mysql://204.44.83.252:3306/zdd_weixin?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&&serverTimezone=UTC
 
   

@@ -28,11 +28,11 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/zdd_member?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&&serverTimezone=UTC
+    url: jdbc:mysql://204.44.83.252:3306/zdd_member?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&&serverTimezone=UTC
 
 ####打印MyBatias日志    
 logging:
   level:
   ### 开发环境使用DEBUG 生产环境info或者error
-   com.mayikt.member.mapper: DEBUG
+   com.zdd.member.mapper: DEBUG
   

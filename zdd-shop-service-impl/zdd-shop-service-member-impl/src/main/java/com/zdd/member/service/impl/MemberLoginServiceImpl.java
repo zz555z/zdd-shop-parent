@@ -6,6 +6,7 @@ import com.zdd.core.base.BaseResponse;
 import com.zdd.core.constants.Constants;
 import com.zdd.core.enums.loginTypeEnum;
 import com.zdd.core.token.GenerateToken;
+import com.zdd.core.transaction.RedisDataSoureceTransaction;
 import com.zdd.core.utils.MD5Util;
 import com.zdd.core.utils.RedisUtil;
 import com.zdd.member.dto.UserDO;
@@ -16,6 +17,7 @@ import com.zdd.member.mapper.UserTokenMapper;
 import com.zdd.service.api.member.MemberLoginService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.TransactionStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,6 +36,9 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
 
     @Autowired
     private UserTokenMapper userTokenMapper;
+
+    @Autowired
+    private RedisDataSoureceTransaction redisDataSoureceTransaction;
 
     @Override
     public BaseResponse<JSONObject> login(@RequestBody UserLoginInpDTO userLoginInpDTO) {
@@ -60,28 +65,49 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
         if (login == null) {
             return setResultError("用户名或密码错误");
         }
-        // 根据userid和logintype 查询是否登陆， 登陆的话就删除redis 修改数据库状态。
-        Long userid = login.getUserid();
-        UserTokenDo userTokenDo = userTokenMapper.selectByUserIdAndLoginType(userid, loginType);
-        if (userTokenDo != null) {
-            userTokenMapper.updateTokenAvailability(userTokenDo.getToken());
+        TransactionStatus transactionStatus = null;
+        JSONObject data = new JSONObject();
 
-            generateToken.removeToken(userTokenDo.getToken());
+        try {
+            // 根据userid和logintype 查询是否登陆， 登陆的话就删除redis 修改数据库状态。
+            Long userid = login.getUserid();
+            UserTokenDo userTokenDo = userTokenMapper.selectByUserIdAndLoginType(userid, loginType);
+            // 开启数据库，redis 事务
+            transactionStatus = redisDataSoureceTransaction.begin();
+            if (userTokenDo != null) {
+                generateToken.removeToken(userTokenDo.getToken());
+                int availability = userTokenMapper.updateTokenAvailability(userTokenDo.getToken());
+                if (!toDaoResult(availability)) {
+                    redisDataSoureceTransaction.rollback(transactionStatus);
+                    setResultError("系统错误");
+                }
+            }
+            String token = generateToken.createToken(Constants.MEMBER_TOKEN_KEYPREFIX + loginType, login.getUserid() + "");
+            // 插入一个新token
+            UserTokenDo newUsertoken = new UserTokenDo();
+            newUsertoken.setLoginType(loginType);
+            newUsertoken.setUserId(userid);
+            newUsertoken.setToken(token);
+            newUsertoken.setDeviceInfor(userLoginInpDTO.getDeviceInfor());
+            int token1 = userTokenMapper.insertUserToken(newUsertoken);
+            if (!toDaoResult(token1)) {
+                redisDataSoureceTransaction.rollback(transactionStatus);
+                setResultError("系统错误");
+            }
+            //3。生成token
+            data.put("Token", token);
+            redisDataSoureceTransaction.commit(transactionStatus);
+        } catch (Exception e) {
+            try {
+                redisDataSoureceTransaction.rollback(transactionStatus);
+                return setResultError("系统错误");
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
 
         }
 
-        String token = generateToken.createToken(Constants.MEMBER_TOKEN_KEYPREFIX + loginType, login.getUserid() + "");
-        //3。生成token
-        JSONObject data = new JSONObject();
-        data.put("Token", token);
-
-        // 插入一个新token
-        UserTokenDo newUsertoken = new UserTokenDo();
-        newUsertoken.setLoginType(loginType);
-        newUsertoken.setUserId(userid);
-        newUsertoken.setToken(token);
-        newUsertoken.setDeviceInfor(userLoginInpDTO.getDeviceInfor());
-        userTokenMapper.insertUserToken(newUsertoken);
         return setResultSuccess(data);
+
     }
 }
