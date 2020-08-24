@@ -1,0 +1,38 @@
+
+###服务启动端口号
+server:
+  port: 8300
+###服务名称(服务注册到eureka名称)  
+#spring:
+#    application:
+#        name: app-zdd-member
+###服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+           defaultZone: http://204.44.83.252:8080/eureka
+spring:
+  application:
+    name: app-zdd-member
+  redis:
+    host: 204.44.83.252
+    port: 6739
+    password: zdd123
+    pool:
+      max-idle: 100
+      min-idle: 1
+      max-active: 1000
+      max-wait: -1
+###数据库相关连接      
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://204.44.83.252:3306/zdd_member?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&&serverTimezone=UTC
+
+####打印MyBatias日志    
+logging:
+  level:
+  ### 开发环境使用DEBUG 生产环境info或者error
+   com.mayikt.member.mapper: DEBUG
+  
