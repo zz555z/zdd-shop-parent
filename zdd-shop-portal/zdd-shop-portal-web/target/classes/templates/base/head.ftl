@@ -25,7 +25,7 @@
     </div> 
     <div class="house-banner layui-form">
       <a class="banner" href="index.html">
-        <img src="http://static.itmayiedu.com/12312312312312da.png" alt="家居商城">
+        <img src="../res/static/img/home_img1.png" alt="家居商城">
       </a>
       <div class="layui-input-inline">
         <input type="text" placeholder="搜索好物" class="layui-input"><i class="layui-icon layui-icon-house-find"></i>

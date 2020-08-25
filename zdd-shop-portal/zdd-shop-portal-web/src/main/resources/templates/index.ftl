@@ -2,9 +2,9 @@
   <#include "base/head.ftl"/>
 <div class="layui-fulid">
   <div class="layui-carousel house-carousel" id="house-carousel">
-    <div carousel-item>    
-      <div ><a href="http://www.mayikt.com" target="_blank" ><img src="http://static.itmayiedu.com/9894648946.jpg"></a></div>
-      <div><a href="http://www.mayikt.com" target="_blank" ><img src="http://static.itmayiedu.com/498496464165.jpg"></a></div>
+    <div carousel-item>
+      <div ><a href="http://www.mayikt.com" target="_blank" ><img src="../res/static/img/banner.jpg"></a></div>
+      <div><a href="http://www.mayikt.com" target="_blank" ><img src="../res/static/img/banner_small.jpg"></a></div>
     </div>
   </div>
 </div>

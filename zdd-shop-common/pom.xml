@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>zdd-shop-common-core</module>
+        <module>zdd-shop-common-web</module>
     </modules>
 
     <dependencies>
