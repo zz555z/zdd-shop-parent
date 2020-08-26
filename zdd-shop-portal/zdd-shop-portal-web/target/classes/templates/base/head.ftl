@@ -13,8 +13,14 @@
   <div class="layui-container">
     <div class="house-nav">
       <span class="layui-breadcrumb" lay-separator="|">
-        <a href="login.html">登录</a>
-        <a href="">我的订单</a>
+     <#if desensMobile??>
+       <a href="">${desensMobile}</a>
+       <a href="">我的订单</a>
+       <a href="/exit.html">退出</a>
+      <#else >
+       <a href="/login.html">登录</a>
+     </#if>
+
         <a href="http://wpa.qq.com/msgrd?v=3&uin=483966038&site=qq&menu=yes">在线客服</a>
       </span>
       <span class="layui-breadcrumb house-breadcrumb-icon" lay-separator=" ">
@@ -22,7 +28,7 @@
         <a href="login.html"><i class="layui-icon layui-icon-username"></i></a>
         <a href="usershop.html"><i class="layui-icon layui-icon-house-shop"></i></a>
       </span>
-    </div> 
+    </div>
     <div class="house-banner layui-form">
       <a class="banner" href="index.html">
         <img src="../res/static/img/home_img1.png" alt="家居商城">

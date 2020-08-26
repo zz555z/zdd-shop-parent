@@ -13,14 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 @Controller
 @Slf4j
+//@Validated
 public class RegisterController extends BaseWebController {
 	private static final String MEMBER_REGISTER_FTL = "member/register";
 	private static final String LOGIN_FTL = "/member/login";
@@ -44,7 +47,8 @@ public class RegisterController extends BaseWebController {
 	 * @return
 	 */
 	@PostMapping("/register.html")
-	public String postRegister(@ModelAttribute("registerVo") RegisterVo registerVo, BindingResult bindingResult, Model model, HttpSession httpSession) {
+	public String postRegister( @ModelAttribute("registerVo") @Validated RegisterVo registerVo,
+							   BindingResult bindingResult, Model model, HttpSession httpSession) {
 		log.info("接收参数：{}",registerVo.toString());
 		// 1。接收参数
 		if (bindingResult.hasErrors()){

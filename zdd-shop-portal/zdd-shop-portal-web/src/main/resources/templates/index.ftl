@@ -1,5 +1,5 @@
 
-  <#include "base/head.ftl"/>
+<#include "base/head.ftl"/>
 <div class="layui-fulid">
   <div class="layui-carousel house-carousel" id="house-carousel">
     <div carousel-item>
@@ -29,7 +29,7 @@
             <p>小家电</p>
             <span>59元起</span>
           </div>
-        </a>  
+        </a>
       </div>
       <div class="layui-col-xs4 cateThir cate">
         <a href="list.html">
@@ -204,8 +204,8 @@
     <a href="list.html" class="layui-col-xs3">
       <img src="../res/static/img/home_img21.jpg">
     </a>
-  </div> 
+  </div>
 </div>
-  <#include "base/bottom.ftl"/>
+<#include "base/bottom.ftl"/>
 
 </html>

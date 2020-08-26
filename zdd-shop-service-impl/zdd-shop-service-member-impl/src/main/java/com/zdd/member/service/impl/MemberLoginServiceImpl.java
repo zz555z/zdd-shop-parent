@@ -9,6 +9,7 @@ import com.zdd.core.token.GenerateToken;
 import com.zdd.core.transaction.RedisDataSoureceTransaction;
 import com.zdd.core.utils.MD5Util;
 import com.zdd.core.utils.RedisUtil;
+import com.zdd.core.utils.TypeCastHelper;
 import com.zdd.member.dto.UserDO;
 import com.zdd.member.dto.UserTokenDo;
 import com.zdd.member.intput.dto.UserLoginInpDTO;
@@ -110,4 +111,33 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
         return setResultSuccess(data);
 
     }
+
+
+    @Override
+    public BaseResponse<JSONObject> exit(String token) {
+        // 删除redis的token 修改数据库状态
+
+        TransactionStatus transactionStatus = null;
+        try {
+            transactionStatus = redisDataSoureceTransaction.begin();
+            generateToken.removeToken(token);
+            int availability = userTokenMapper.updateTokenAvailability(token);
+            if (!toDaoResult(availability)) {
+                redisDataSoureceTransaction.rollback(transactionStatus);
+                setResultError("系统错误");
+            }
+            redisDataSoureceTransaction.commit(transactionStatus);
+
+        } catch (Exception e) {
+            try {
+                redisDataSoureceTransaction.rollback(transactionStatus);
+                return setResultError("系统错误");
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
+        return setResultSuccess();
+    }
+
+
 }

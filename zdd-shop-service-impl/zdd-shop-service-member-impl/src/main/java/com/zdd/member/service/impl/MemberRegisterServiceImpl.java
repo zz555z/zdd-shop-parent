@@ -34,9 +34,9 @@ public class MemberRegisterServiceImpl extends BaseApiService<JSONObject> implem
     @Override
     @Transactional
     public BaseResponse<JSONObject> register(@RequestBody UserIntDTO userIntDTO, String registCode) {
-        if (StringUtils.isEmpty(userIntDTO.getUserName())) {
-            return setResultError("用户名不能为空");
-        }
+//        if (StringUtils.isEmpty(userIntDTO.getUserName())) {
+//            return setResultError("用户名不能为空");
+//        }
         if (StringUtils.isEmpty(userIntDTO.getMobile())) {
             return setResultError("手机号不能为空");
         }
