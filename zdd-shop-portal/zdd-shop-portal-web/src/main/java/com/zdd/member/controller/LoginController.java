@@ -90,7 +90,7 @@ public class LoginController extends BaseWebController {
             setErrorMsg(model, login.getMsg());
             return LOGIN_FTL;
         }
-        String token = login.getData().getString("Token");
+        String token = login.getData().getString("token");
         //4.登陆成功 token存入cookie
         CookieUtils.setCookie(request, response, ConstantsWeb.LOGIN_TOKEN_COOKIENAME, token);
 

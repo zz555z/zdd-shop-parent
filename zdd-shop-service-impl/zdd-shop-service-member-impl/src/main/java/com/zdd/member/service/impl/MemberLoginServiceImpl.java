@@ -83,6 +83,14 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
                     setResultError("系统错误");
                 }
             }
+
+            // 如果有传递oppid参数， 修改数据库
+            String qqOpenId = userLoginInpDTO.getQqOpenId();
+            if (!StringUtils.isEmpty(qqOpenId)) {
+                userMapper.updateUserOpenId(qqOpenId, userid);
+            }
+
+
             String token = generateToken.createToken(Constants.MEMBER_TOKEN_KEYPREFIX + loginType, login.getUserid() + "");
             // 插入一个新token
             UserTokenDo newUsertoken = new UserTokenDo();
@@ -96,7 +104,7 @@ public class MemberLoginServiceImpl extends BaseApiService<JSONObject> implement
                 setResultError("系统错误");
             }
             //3。生成token
-            data.put("Token", token);
+            data.put("token", token);
             redisDataSoureceTransaction.commit(transactionStatus);
         } catch (Exception e) {
             try {

@@ -6,5 +6,6 @@ package com.zdd.web.constants;
  * @Content:
  */
 public interface ConstantsWeb {
-   String LOGIN_TOKEN_COOKIENAME="login.token";
+    String LOGIN_TOKEN_COOKIENAME = "login.token";
+    String LOGIN_QQ_OPENID = "qq_openid";
 }

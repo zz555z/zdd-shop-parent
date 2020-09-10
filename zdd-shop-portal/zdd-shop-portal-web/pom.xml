@@ -38,7 +38,13 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>Sdk4J.jar</groupId>
+            <artifactId>Sdk4J.jar</artifactId>
+            <version>0.0.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/Sdk4J.jar</systemPath>
+        </dependency>
 
 
     </dependencies>
