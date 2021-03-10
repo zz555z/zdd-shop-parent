@@ -8,14 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="zdd-shop-service-weixin-impl" />
         <module name="zdd-shop-portal-web" />
-        <module name="zdd-shop-common-web" />
-        <module name="zdd-shop-service-api-weixin" />
-        <module name="zdd-shop-basics-springcloud-eureka" />
-        <module name="zdd-shop-service-api-member" />
-        <module name="zdd-shop-service-member-impl" />
-        <module name="zdd-shop-basics-springcloud-zuul" />
         <module name="zdd-shop-api-weixin-dto" />
         <module name="zdd-shop-api-member-dto" />
+        <module name="zdd-shop-common-web" />
+        <module name="zdd-shop-basics-springcloud-eureka" />
+        <module name="zdd-shop-service-member-impl" />
+        <module name="zdd-shop-basics-springcloud-zuul" />
+        <module name="zdd-shop-service-api-weixin" />
+        <module name="zdd-shop-service-api-member" />
         <module name="zdd-shop-common-core" />
       </profile>
     </annotationProcessing>

@@ -1,6 +1,5 @@
 package com.zdd.member.intput.dto;
 
-import com.zdd.core.enums.loginTypeEnum;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
