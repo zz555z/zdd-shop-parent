@@ -5,7 +5,7 @@ server:
 eureka:
   instance:
     ###注册到eurekaip地址
-    hostname: 204.44.83.252
+    hostname: 204.44.75.216
   client:
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

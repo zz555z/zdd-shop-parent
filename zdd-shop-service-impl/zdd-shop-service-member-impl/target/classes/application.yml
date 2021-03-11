@@ -10,12 +10,14 @@ server:
 eureka:
   client:
     service-url:
-           defaultZone: http://204.44.83.252:8080/eureka
+#           defaultZone: http://204.44.83.252:8080/eureka
+           defaultZone: http://204.44.75.216:8100/eureka
+
 spring:
   application:
     name: app-zdd-member
   redis:
-    host: 204.44.83.252
+    host: 204.44.75.216
     port: 6739
     password: zdd123
     pool:
@@ -23,16 +25,30 @@ spring:
       min-idle: 1
       max-active: 1000
       max-wait: -1
-###数据库相关连接      
+  ###数据库相关连接
   datasource:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://204.44.83.252:3306/zdd_member?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&&serverTimezone=UTC
+    url: jdbc:mysql://127.0.0.1:3306/zdd_member?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&&serverTimezone=UTC
 
 ####打印MyBatias日志    
 logging:
   level:
   ### 开发环境使用DEBUG 生产环境info或者error
    com.zdd.member.mapper: DEBUG
-  
+
+#hystrix的超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000

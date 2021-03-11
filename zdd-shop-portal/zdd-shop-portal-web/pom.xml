@@ -12,32 +12,7 @@
     <artifactId>zdd-shop-portal-web</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>zdd-shop-common-web</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <exclusions>
 
-                <exclusion>
-                    <groupId>org.mybatis.spring.boot</groupId>
-                    <artifactId>mybatis-spring-boot-starter</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.example </groupId>
-            <artifactId>zdd-shop-service-api-member</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-        </dependency>
-        <!-- springcloud feign组件 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
         <dependency>
             <groupId>Sdk4J.jar</groupId>
             <artifactId>Sdk4J.jar</artifactId>

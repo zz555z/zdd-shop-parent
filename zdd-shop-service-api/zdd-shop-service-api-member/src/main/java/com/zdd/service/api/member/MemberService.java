@@ -1,6 +1,8 @@
 package com.zdd.service.api.member;
 
 import com.zdd.core.base.BaseResponse;
+import com.zdd.member.intput.dto.UserIntDTO;
+import com.zdd.member.intput.dto.UserLoginInpDTO;
 import com.zdd.member.output.dto.UserOutDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -8,6 +10,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -43,5 +46,17 @@ public interface MemberService {
     @GetMapping("/getUserInfo")
     @ApiOperation(value = "/getUserInfo")
     BaseResponse<UserOutDTO> getInfo(@RequestParam("token") String token);
+
+
+    /**
+     * sso单点登录查询用户信息
+     * @param userLoginInpDTO
+     * @return
+     */
+    @PostMapping("/ssologin")
+    @ApiOperation(value = "/ssologin")
+    BaseResponse<UserOutDTO> ssologin(@RequestBody UserLoginInpDTO userLoginInpDTO);
+
+
 
 }

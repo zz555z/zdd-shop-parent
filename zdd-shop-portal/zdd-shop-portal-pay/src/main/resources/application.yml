@@ -1,0 +1,53 @@
+#### 整合freemarker
+spring:
+  freemarker:
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: request
+    suffix: .ftl
+    template-loader-path:
+      - classpath:/templates
+  application:
+    name: app-zdd-pay-web
+
+###服务注册到eureka地址
+eureka:
+  client:
+    service-url:
+#      defaultZone: http://204.44.83.252:8080/eureka
+      defaultZone: http://204.44.75.216:8100/eureka
+
+server:
+  port: 8050
+
+#hystrix的超时时间
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+#ribbon的超时时间
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+
+xxl:
+  sso:
+    logout:
+      path: /logout
+    redis:
+      address: redis://204.44.75.216:6739
+      password: zdd123
+    server: http://127.0.0.1:8080/xxl-sso-server
+xxl-sso:
+  excluded:
+    paths: ''
+

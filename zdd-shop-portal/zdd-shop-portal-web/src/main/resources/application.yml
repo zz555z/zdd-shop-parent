@@ -18,10 +18,11 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://204.44.83.252:8080/eureka
+#      defaultZone: http://204.44.83.252:8080/eureka
+      defaultZone: http://204.44.75.216:8100/eureka
 
 server:
-  port: 8100
+  port: 80
 
 #hystrix的超时时间
 hystrix:
@@ -37,4 +38,16 @@ hystrix:
 ribbon:
   ReadTimeout: 30000
   ConnectTimeout: 30000
+
+xxl:
+  sso:
+    logout:
+      path: /logout
+    redis:
+      address: redis://204.44.75.216:6739
+      password: zdd123
+    server: http://127.0.0.1:8080/xxl-sso-server
+xxl-sso:
+  excluded:
+    paths: ''
 

@@ -14,6 +14,7 @@
     <modules>
         <module>zdd-shop-basics-springcloud-eureka</module>
         <module>zdd-shop-basics-springcloud-zuul</module>
+        <module>zdd-shop-basics-xxl-sso-service</module>
     </modules>
 
 
