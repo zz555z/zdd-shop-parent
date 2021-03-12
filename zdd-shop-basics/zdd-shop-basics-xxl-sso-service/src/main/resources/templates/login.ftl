@@ -7,10 +7,17 @@
     <#import "common/common.macro.ftl" as netCommon>
     <@netCommon.commonStyle />
     <link rel="stylesheet" href="${request.contextPath}/static/adminlte/plugins/iCheck/square/blue.css">
+    <style>
+        body{
+            background: url(${request.contextPath}/static/images/banner.jpg) no-repeat;
+            background-size: 100% 100%;
+            position: relative;
 
+        }
+    </style>
 
 </head>
-<body class="hold-transition login-page"  >
+<body class="hold-transition "  >
 
 
     <div class="login-box">
