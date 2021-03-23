@@ -19,7 +19,7 @@ eureka:
   client:
     service-url:
 #      defaultZone: http://204.44.83.252:8080/eureka
-      defaultZone: http://204.44.75.216:8100/eureka
+      defaultZone: http://155.94.170.236:8100/eureka
 
 server:
   port: 80
@@ -44,8 +44,8 @@ xxl:
     logout:
       path: /logout
     redis:
-      address: redis://204.44.75.216:6739
-      password: zdd123
+      address: redis://155.94.170.236:6379
+      password: zdd1234
     server: http://127.0.0.1:8080/xxl-sso-server
 xxl-sso:
   excluded:

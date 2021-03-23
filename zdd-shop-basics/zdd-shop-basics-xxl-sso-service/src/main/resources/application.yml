@@ -21,11 +21,11 @@ server:
 eureka:
   client:
     service-url:
-           defaultZone: http://204.44.75.216:8100/eureka
+           defaultZone: http://155.94.170.236:8100/eureka
 xxl:
   sso:
     redis:
-      address: redis://204.44.75.216:6739
-      password: zdd123
+      address: redis://155.94.170.236:6739
+      password: zdd1234
       expire:
         minite: 1440

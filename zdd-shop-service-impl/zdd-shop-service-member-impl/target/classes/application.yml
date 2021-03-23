@@ -17,9 +17,9 @@ spring:
   application:
     name: app-zdd-member
   redis:
-    host: 204.44.75.216
-    port: 6739
-    password: zdd123
+    host: 155.94.170.236
+    port: 6379
+    password: zdd1234
     pool:
       max-idle: 100
       min-idle: 1
@@ -28,9 +28,9 @@ spring:
   ###数据库相关连接
   datasource:
     username: root
-    password: root
+    password: yuruiqi666
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/zdd_member?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&&serverTimezone=UTC
+    url: jdbc:mysql://155.94.170.236:3306/zdd_member?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&&serverTimezone=UTC
 
 ####打印MyBatias日志    
 logging:

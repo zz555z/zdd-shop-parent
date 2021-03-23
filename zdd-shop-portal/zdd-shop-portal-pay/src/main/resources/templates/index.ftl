@@ -17,6 +17,7 @@
 
         body{
             background: url(../images/banner.jpg) no-repeat;
+            <#--background: url(${request.contextPath}/static/images/banner.jpg) no-repeat;-->
             background-size: 100% 100%;
             position: relative;
 
@@ -26,6 +27,6 @@
 </head>
 <body>
 host测试
-${request.contextPath}
+
 </body>
 
