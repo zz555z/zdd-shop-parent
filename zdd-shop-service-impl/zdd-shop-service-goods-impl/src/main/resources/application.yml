@@ -1,0 +1,42 @@
+
+###服务启动端口号
+server:
+  port: 8500
+###服务名称(服务注册到eureka名称)  
+
+eureka:
+  client:
+    service-url:
+           defaultZone: http://155.94.170.236:8100/eureka
+
+spring:
+  application:
+    name: app-zdd-goods
+  redis:
+    host: 155.94.170.236
+    port: 6379
+    password: zdd1234
+    pool:
+      max-idle: 100
+      min-idle: 1
+      max-active: 1000
+      max-wait: -1
+  ###数据库相关连接
+  datasource:
+    username: root
+    password: yuruiqi666
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://155.94.170.236:3306/goods?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&autoReconnect=true&failOverReadOnly=false&useSSL=false&&serverTimezone=UTC
+  data:
+    elasticsearch:
+      ####集群名称
+      cluster-name: elasticsearch-cluster
+      ####地址
+      cluster-nodes: 155.94.170.236:9300
+####打印MyBatias日志    
+logging:
+  level:
+  ### 开发环境使用DEBUG 生产环境info或者error
+   com.zdd.member.mapper: DEBUG
+
+

@@ -14,6 +14,7 @@
     <modules>
         <module>zdd-shop-service-weixin-impl</module>
         <module>zdd-shop-service-member-impl</module>
+        <module>zdd-shop-service-goods-impl</module>
     </modules>
     <dependencies>
         <dependency>

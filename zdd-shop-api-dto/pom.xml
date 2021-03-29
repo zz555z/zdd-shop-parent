@@ -15,6 +15,7 @@
     <modules>
         <module>zdd-shop-api-member-dto</module>
         <module>zdd-shop-api-weixin-dto</module>
+        <module>zdd-shop-api-product-dto</module>
     </modules>
 
     <dependencies>
